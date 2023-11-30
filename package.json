@@ -43,5 +43,8 @@
       "url": "https://www.linkedin.com/in/talha-meer"
     }
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "files": [
+    "dist/**/*"
+  ]
 }
