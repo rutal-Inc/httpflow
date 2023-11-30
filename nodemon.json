@@ -1,0 +1,5 @@
+{
+  "watch": ["src"],
+  "ext": "*",
+  "exec": "npx ts-node-esm ./src/index.ts"
+}

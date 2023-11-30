@@ -3,13 +3,17 @@
   "private": false,
   "version": "0.0.0",
   "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev": "nodemon",
+    "lint": "tsc",
+    "build": "npm run lint && tsup"
   },
   "devDependencies": {
-    "typescript": "^5.2.2",
-    "vite": "^5.0.0"
-  }
+    "nodemon": "^3.0.1",
+    "tsup": "^8.0.1",
+    "typescript": "^5.2.2"
+  },
 }
