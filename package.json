@@ -2,6 +2,7 @@
   "name": "httpflow",
   "private": false,
   "version": "0.0.0",
+  "description": "A sleek and lightweight wrapper for the Fetch API with support for TypeScript generics, simplifying HTTP requests with elegance and ease.",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -16,4 +17,31 @@
     "tsup": "^8.0.1",
     "typescript": "^5.2.2"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rutal-Inc/httpflow"
+  },
+  "bugs": {
+    "url": "https://github.com/rutal-Inc/httpflow/issues"
+  },
+  "homepage": "https://github.com/rutal-Inc/httpflow#readme",
+  "keywords": [
+    "http",
+    "fetch",
+    "wrapper",
+    "promise",
+    "API",
+    "rest",
+    "browser",
+    "lightweight"
+  ],
+  "author": "rutal, Inc.",
+  "contributors": [
+    {
+      "name": "Talha Meer",
+      "email": "talhameer92@gmail.com",
+      "url": "https://www.linkedin.com/in/talha-meer"
+    }
+  ],
+  "license": "MIT"
 }
