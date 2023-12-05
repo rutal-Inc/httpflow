@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "description": "A sleek and lightweight wrapper for the Fetch API with support for TypeScript generics, simplifying HTTP requests with elegance and ease.",
   "type": "module",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "dev": "nodemon",
