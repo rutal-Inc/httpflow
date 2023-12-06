@@ -1,7 +1,7 @@
 {
-  "name": "quantum-fetch",
+  "name": "@rutal/httpflow",
+  "version": "0.0.1",
   "private": false,
-  "version": "0.0.0",
   "description": "A sleek and lightweight wrapper for the Fetch API with support for TypeScript generics, simplifying HTTP requests with elegance and ease.",
   "type": "module",
   "main": "dist/index.cjs",
@@ -19,12 +19,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rutal-Inc/quantum-fetch"
+    "url": "git+https://github.com/rutal-Inc/httpflow.git"
   },
   "bugs": {
-    "url": "https://github.com/rutal-Inc/quantum-fetch/issues"
+    "url": "https://github.com/rutal-Inc/httpflow/issues"
   },
-  "homepage": "https://github.com/rutal-Inc/quantum-fetch#readme",
+  "homepage": "https://github.com/rutal-Inc/httpflow#readme",
   "keywords": [
     "http",
     "fetch",
