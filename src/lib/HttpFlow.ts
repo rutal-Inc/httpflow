@@ -29,4 +29,20 @@ export default class HttpFlow {
 
     return this.request<T>(endpoint, reqOptions);
   }
+
+  post<T = unknown>(
+    endpoint: string,
+    options: RequestInitWithoutMethod
+  ): Promise<T> {
+    const reqOptions: RequestInit = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...options?.headers,
+      },
+      ...options,
+    };
+
+    return this.request<T>(endpoint, reqOptions);
+  }
 }
