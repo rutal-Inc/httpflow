@@ -40,7 +40,7 @@ export default class HttpFlow {
         "Content-Type": "application/json",
         ...options?.headers,
       },
-      ...options,
+      body: JSON.stringify(options.body),
     };
 
     return this.request<T>(endpoint, reqOptions);
@@ -56,7 +56,7 @@ export default class HttpFlow {
         "Content-Type": "application/json",
         ...options?.headers,
       },
-      ...options,
+      body: JSON.stringify(options.body),
     };
 
     return this.request<T>(endpoint, reqOptions);
