@@ -45,4 +45,20 @@ export default class HttpFlow {
 
     return this.request<T>(endpoint, reqOptions);
   }
+
+  patch<T = unknown>(
+    endpoint: string,
+    options: RequestInitWithoutMethod
+  ): Promise<T> {
+    const reqOptions: RequestInit = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        ...options?.headers,
+      },
+      ...options,
+    };
+
+    return this.request<T>(endpoint, reqOptions);
+  }
 }
