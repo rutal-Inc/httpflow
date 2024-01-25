@@ -1,1 +1,3 @@
-export type RequestInitWithoutMethod = Omit<RequestInit, "method">;
+export interface RequestOptions extends RequestInit {
+  body: any;
+}

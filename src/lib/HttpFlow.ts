@@ -1,4 +1,4 @@
-import { RequestInitWithoutMethod } from "../@types";
+import { RequestOptions } from "../@types";
 
 export default class HttpFlow {
   private async request<T = unknown>(
@@ -14,10 +14,7 @@ export default class HttpFlow {
       });
   }
 
-  get<T = unknown>(
-    endpoint: string,
-    options?: RequestInitWithoutMethod
-  ): Promise<T> {
+  get<T = unknown>(endpoint: string, options?: RequestOptions): Promise<T> {
     const reqOptions: RequestInit = {
       method: "GET",
       headers: {
@@ -25,6 +22,32 @@ export default class HttpFlow {
         ...options?.headers,
       },
       ...options,
+    };
+
+    return this.request<T>(endpoint, reqOptions);
+  }
+
+  post<T = unknown>(endpoint: string, options: RequestOptions): Promise<T> {
+    const reqOptions: RequestInit = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...options?.headers,
+      },
+      body: JSON.stringify(options.body),
+    };
+
+    return this.request<T>(endpoint, reqOptions);
+  }
+
+  patch<T = unknown>(endpoint: string, options: RequestOptions): Promise<T> {
+    const reqOptions: RequestInit = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        ...options?.headers,
+      },
+      body: JSON.stringify(options.body),
     };
 
     return this.request<T>(endpoint, reqOptions);
