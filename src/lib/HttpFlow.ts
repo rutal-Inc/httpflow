@@ -53,10 +53,7 @@ export default class HttpFlow {
     return this.request<T>(endpoint, reqOptions);
   }
 
-  delete<T = unknown>(
-    endpoint: string,
-    options?: RequestInitWithoutMethod
-  ): Promise<T> {
+  delete<T = unknown>(endpoint: string, options?: RequestOptions): Promise<T> {
     const reqOptions: RequestInit = {
       method: "DELETE",
       headers: {
