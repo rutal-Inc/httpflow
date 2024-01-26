@@ -1,3 +1,3 @@
 export interface RequestOptions extends RequestInit {
-  body: any;
+  body?: any;
 }
