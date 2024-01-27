@@ -1,6 +1,6 @@
 {
   "name": "@rutal/httpflow",
-  "version": "0.1.0",
+  "version": "0.1.0-beta.1",
   "private": false,
   "description": "A sleek and lightweight wrapper for the Fetch API with support for TypeScript generics, simplifying HTTP requests with elegance and ease.",
   "type": "module",
