@@ -1,11 +1,26 @@
-import { RequestOptions } from "../@types";
+import { HttpFlowOptions, RequestOptions } from "../@types";
 
 /**
  * @class HttpFlow
- * @description A sleek and lightweight wrapper for the Fetch API with TypeScript generics support.
+ * @description A sleek and lightweight wrapper for the Fetch API with support for TypeScript generics.
  * @exports HttpFlow
  */
 export default class HttpFlow {
+  private _baseURL;
+
+  private _headers = {
+    "Content-Type": "application/json",
+  };
+
+  constructor(options?: HttpFlowOptions) {
+    this._baseURL = options?.baseURL ?? "";
+
+    this._headers = {
+      ...this._headers,
+      ...options?.headers,
+    };
+  }
+
   /**
    * @method request
    * @description Makes a generic HTTP request using the Fetch API.
@@ -17,7 +32,7 @@ export default class HttpFlow {
     endpoint: string,
     options: RequestInit
   ): Promise<T> {
-    return fetch(endpoint, options)
+    return fetch(`${this._baseURL}${endpoint}`, options)
       .then(async (response) => {
         return (await response.json()) as T;
       })
@@ -37,7 +52,7 @@ export default class HttpFlow {
     const reqOptions: RequestInit = {
       method: "GET",
       headers: {
-        "Content-Type": "application/json",
+        ...this._headers,
         ...options?.headers,
       },
       ...options,
@@ -57,7 +72,7 @@ export default class HttpFlow {
     const reqOptions: RequestInit = {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        ...this._headers,
         ...options?.headers,
       },
       body: JSON.stringify(options.body),
@@ -77,7 +92,7 @@ export default class HttpFlow {
     const reqOptions: RequestInit = {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json",
+        ...this._headers,
         ...options?.headers,
       },
       body: JSON.stringify(options.body),
@@ -97,7 +112,7 @@ export default class HttpFlow {
     const reqOptions: RequestInit = {
       method: "PATCH",
       headers: {
-        "Content-Type": "application/json",
+        ...this._headers,
         ...options?.headers,
       },
       body: JSON.stringify(options.body),
@@ -117,7 +132,7 @@ export default class HttpFlow {
     const reqOptions: RequestInit = {
       method: "DELETE",
       headers: {
-        "Content-Type": "application/json",
+        ...this._headers,
         ...options?.headers,
       },
       ...options,
