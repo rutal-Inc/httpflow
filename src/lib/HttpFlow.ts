@@ -41,6 +41,19 @@ export default class HttpFlow {
       });
   }
 
+  // Helper function to handle common request options
+  private handleRequestOptions(options?: RequestOptions): RequestOptions {
+    if (options && !(options.body instanceof FormData)) {
+      options.headers = {
+        "Content-Type": "application/json",
+        ...options.headers,
+      };
+
+      options.body = JSON.stringify(options.body);
+    }
+    return options as RequestOptions;
+  }
+
   /**
    * @method get
    * @description Sends a GET request to the specified endpoint.
@@ -69,22 +82,13 @@ export default class HttpFlow {
    * @returns {Promise<T>} - A promise that resolves to the parsed JSON response.
    */
   post<T = unknown>(endpoint: string, options?: RequestOptions): Promise<T> {
-    if (options && !(options.body instanceof FormData)) {
-      options.headers = {
-        "Content-Type": "application/json",
-        ...options.headers,
-      };
-
-      options.body = JSON.stringify(options.body);
-    }
-
     const reqOptions: RequestInit = {
       method: "POST",
       headers: {
         ...this._headers,
         ...options?.headers,
       },
-      body: options?.body,
+      ...this.handleRequestOptions(options),
     };
 
     return this.request<T>(endpoint, reqOptions);
@@ -98,22 +102,13 @@ export default class HttpFlow {
    * @returns {Promise<T>} - A promise that resolves to the parsed JSON response.
    */
   put<T = unknown>(endpoint: string, options?: RequestOptions): Promise<T> {
-    if (options && !(options.body instanceof FormData)) {
-      options.headers = {
-        "Content-Type": "application/json",
-        ...options.headers,
-      };
-
-      options.body = JSON.stringify(options.body);
-    }
-
     const reqOptions: RequestInit = {
-      method: "POST",
+      method: "PUT",
       headers: {
         ...this._headers,
         ...options?.headers,
       },
-      body: options?.body,
+      ...this.handleRequestOptions(options),
     };
 
     return this.request<T>(endpoint, reqOptions);
@@ -127,22 +122,13 @@ export default class HttpFlow {
    * @returns {Promise<T>} - A promise that resolves to the parsed JSON response.
    */
   patch<T = unknown>(endpoint: string, options?: RequestOptions): Promise<T> {
-    if (options && !(options.body instanceof FormData)) {
-      options.headers = {
-        "Content-Type": "application/json",
-        ...options.headers,
-      };
-
-      options.body = JSON.stringify(options.body);
-    }
-
     const reqOptions: RequestInit = {
-      method: "POST",
+      method: "PATCH",
       headers: {
         ...this._headers,
         ...options?.headers,
       },
-      body: options?.body,
+      ...this.handleRequestOptions(options),
     };
 
     return this.request<T>(endpoint, reqOptions);
