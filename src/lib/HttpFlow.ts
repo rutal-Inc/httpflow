@@ -68,14 +68,23 @@ export default class HttpFlow {
    * @param {RequestOptions} options - Additional options for the request, including the request body.
    * @returns {Promise<T>} - A promise that resolves to the parsed JSON response.
    */
-  post<T = unknown>(endpoint: string, options: RequestOptions): Promise<T> {
+  post<T = unknown>(endpoint: string, options?: RequestOptions): Promise<T> {
+    if (options && !(options.body instanceof FormData)) {
+      options.headers = {
+        "Content-Type": "application/json",
+        ...options.headers,
+      };
+
+      options.body = JSON.stringify(options.body);
+    }
+
     const reqOptions: RequestInit = {
       method: "POST",
       headers: {
         ...this._headers,
         ...options?.headers,
       },
-      body: JSON.stringify(options.body),
+      body: options?.body,
     };
 
     return this.request<T>(endpoint, reqOptions);
@@ -88,14 +97,23 @@ export default class HttpFlow {
    * @param {RequestOptions} options - Additional options for the request, including the request body.
    * @returns {Promise<T>} - A promise that resolves to the parsed JSON response.
    */
-  put<T = unknown>(endpoint: string, options: RequestOptions): Promise<T> {
+  put<T = unknown>(endpoint: string, options?: RequestOptions): Promise<T> {
+    if (options && !(options.body instanceof FormData)) {
+      options.headers = {
+        "Content-Type": "application/json",
+        ...options.headers,
+      };
+
+      options.body = JSON.stringify(options.body);
+    }
+
     const reqOptions: RequestInit = {
-      method: "PUT",
+      method: "POST",
       headers: {
         ...this._headers,
         ...options?.headers,
       },
-      body: JSON.stringify(options.body),
+      body: options?.body,
     };
 
     return this.request<T>(endpoint, reqOptions);
@@ -108,14 +126,23 @@ export default class HttpFlow {
    * @param {RequestOptions} options - Additional options for the request, including the request body.
    * @returns {Promise<T>} - A promise that resolves to the parsed JSON response.
    */
-  patch<T = unknown>(endpoint: string, options: RequestOptions): Promise<T> {
+  patch<T = unknown>(endpoint: string, options?: RequestOptions): Promise<T> {
+    if (options && !(options.body instanceof FormData)) {
+      options.headers = {
+        "Content-Type": "application/json",
+        ...options.headers,
+      };
+
+      options.body = JSON.stringify(options.body);
+    }
+
     const reqOptions: RequestInit = {
-      method: "PATCH",
+      method: "POST",
       headers: {
         ...this._headers,
         ...options?.headers,
       },
-      body: JSON.stringify(options.body),
+      body: options?.body,
     };
 
     return this.request<T>(endpoint, reqOptions);
