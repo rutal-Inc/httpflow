@@ -41,6 +41,19 @@ export default class HttpFlow {
       });
   }
 
+  // Helper function to handle common request options
+  private handleRequestOptions(options?: RequestOptions): RequestOptions {
+    if (options && !(options.body instanceof FormData)) {
+      options.headers = {
+        "Content-Type": "application/json",
+        ...options.headers,
+      };
+
+      options.body = JSON.stringify(options.body);
+    }
+    return options as RequestOptions;
+  }
+
   /**
    * @method get
    * @description Sends a GET request to the specified endpoint.
@@ -68,14 +81,14 @@ export default class HttpFlow {
    * @param {RequestOptions} options - Additional options for the request, including the request body.
    * @returns {Promise<T>} - A promise that resolves to the parsed JSON response.
    */
-  post<T = unknown>(endpoint: string, options: RequestOptions): Promise<T> {
+  post<T = unknown>(endpoint: string, options?: RequestOptions): Promise<T> {
     const reqOptions: RequestInit = {
       method: "POST",
       headers: {
         ...this._headers,
         ...options?.headers,
       },
-      body: JSON.stringify(options.body),
+      ...this.handleRequestOptions(options),
     };
 
     return this.request<T>(endpoint, reqOptions);
@@ -88,14 +101,14 @@ export default class HttpFlow {
    * @param {RequestOptions} options - Additional options for the request, including the request body.
    * @returns {Promise<T>} - A promise that resolves to the parsed JSON response.
    */
-  put<T = unknown>(endpoint: string, options: RequestOptions): Promise<T> {
+  put<T = unknown>(endpoint: string, options?: RequestOptions): Promise<T> {
     const reqOptions: RequestInit = {
       method: "PUT",
       headers: {
         ...this._headers,
         ...options?.headers,
       },
-      body: JSON.stringify(options.body),
+      ...this.handleRequestOptions(options),
     };
 
     return this.request<T>(endpoint, reqOptions);
@@ -108,14 +121,14 @@ export default class HttpFlow {
    * @param {RequestOptions} options - Additional options for the request, including the request body.
    * @returns {Promise<T>} - A promise that resolves to the parsed JSON response.
    */
-  patch<T = unknown>(endpoint: string, options: RequestOptions): Promise<T> {
+  patch<T = unknown>(endpoint: string, options?: RequestOptions): Promise<T> {
     const reqOptions: RequestInit = {
       method: "PATCH",
       headers: {
         ...this._headers,
         ...options?.headers,
       },
-      body: JSON.stringify(options.body),
+      ...this.handleRequestOptions(options),
     };
 
     return this.request<T>(endpoint, reqOptions);
