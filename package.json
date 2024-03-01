@@ -10,7 +10,10 @@
   "scripts": {
     "dev": "nodemon",
     "lint": "tsc",
-    "build": "npm run lint && tsup"
+    "build": "npm run lint && tsup",
+    "release:beta": "npm version prerelease && npm publish --tag beta",
+    "release:minor": "npm version minor && npm publish",
+    "release:major": "npm version major && npm publish"
   },
   "devDependencies": {
     "nodemon": "^3.0.1",
