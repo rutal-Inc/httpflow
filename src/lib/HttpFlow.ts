@@ -85,7 +85,6 @@ export default class HttpFlow {
     const reqOptions: RequestInit = {
       method: "POST",
       headers: {
-        ...this._headers,
         ...options?.headers,
       },
       ...this.handleRequestOptions(options),
@@ -105,7 +104,6 @@ export default class HttpFlow {
     const reqOptions: RequestInit = {
       method: "PUT",
       headers: {
-        ...this._headers,
         ...options?.headers,
       },
       ...this.handleRequestOptions(options),
@@ -125,7 +123,6 @@ export default class HttpFlow {
     const reqOptions: RequestInit = {
       method: "PATCH",
       headers: {
-        ...this._headers,
         ...options?.headers,
       },
       ...this.handleRequestOptions(options),
