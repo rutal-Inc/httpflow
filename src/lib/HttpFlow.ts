@@ -7,10 +7,25 @@ import { HttpFlowOptions, RequestOptions } from "../@types";
  */
 export default class HttpFlow {
   private _baseURL;
+  public get baseURL() {
+    return this._baseURL;
+  }
+  public set baseURL(baseURL: string) {
+    this._baseURL = baseURL;
+  }
 
   private _headers = {
     "Content-Type": "application/json",
   };
+  public get headers() {
+    return this._headers;
+  }
+  public set headers(headers: Record<string, string>) {
+    this._headers = {
+      ...this._headers,
+      ...headers,
+    };
+  }
 
   constructor(options?: HttpFlowOptions) {
     this._baseURL = options?.baseURL ?? "";
